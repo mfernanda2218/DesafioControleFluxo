@@ -1,26 +1,29 @@
+import exceptions.ParametrosInvalidosException;
 import java.util.Scanner;
 
 public class Contador {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Informe um número:");
         int numMenor = scanner.nextInt();
 
         System.out.println("Informe outro número que seja maior que o primeiro:");
         int numMaior = scanner.nextInt();
 
-        while (numMaior <= numMenor) {
-            System.out.printf("Número inválido! O segundo número deve ser maior que %d. Tente novamente: ", numMenor);
-            numMaior = scanner.nextInt();  // Corrigido: estava solicitando numMenor novamente
+        try {
+            if (numMenor >= numMaior) {
+                throw new ParametrosInvalidosException("O segundo número deve ser maior que o primeiro.");
+            }
+            contar(numMenor, numMaior);
+        } catch (ParametrosInvalidosException e) {
+            System.out.println(e.getMessage());
         }
-        scanner.nextLine();
+    }
 
-        System.out.println("Escolha entre impar (i) e par (p): ");
-        String opcao = scanner.nextLine().toLowerCase();
-
-        while (!opcao.equals("i") && !opcao.equals("p")) {
-            System.out.println("Opção inválida. Escolha entre (i) para impar ou (p) para par");
-            opcao = scanner.nextLine().toLowerCase();
+    static void contar(int numMenor, int numMaior) {
+        for (int i = numMenor; i <= numMaior; i++) {
+            System.out.println(i);
         }
     }
 }
