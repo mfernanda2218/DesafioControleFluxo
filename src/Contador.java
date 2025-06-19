@@ -27,7 +27,8 @@ public class Contador {
     static void contar(int numMenor, int numMaior) throws ParametrosInvalidosException {
         int contagem = numMaior - numMenor;
         for (int i = 1; i <= contagem; i++) {
-            System.out.println("Imprimindo número " + i);
+            System.out.println("Contando: " + i);
+            System.out.println("Imprimindo número " + (numMenor + i));
         }
     }
 }
